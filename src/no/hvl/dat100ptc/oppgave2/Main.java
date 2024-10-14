@@ -7,7 +7,9 @@ public class Main {
 	
 	public static void main(String[] args) {
 
-		// TODO
+		String tid = "2017-08-13T08:52:26.000Z";
+		int sekund = GPSDataConverter.toSeconds(tid);
+		System.out.println(sekund);
 		
 	}
 }

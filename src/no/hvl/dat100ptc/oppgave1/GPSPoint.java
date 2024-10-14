@@ -5,70 +5,58 @@ import no.hvl.dat100ptc.TODO;
 public class GPSPoint {
 
 	// TODO - objektvariable
+	private int tid;
+	private double lat;
+	private double longi;
+	private double høgde;
 	
 	public GPSPoint(int time, double latitude, double longitude, double elevation) {
 
-		// TODO - konstruktur
-
-		throw new UnsupportedOperationException(TODO.construtor("GPSPoint"));
+		tid = time;
+		lat = latitude;
+		longi = longitude;
+		høgde = elevation;
 		
 	}
 
 	// TODO - get/set metoder
 	public int getTime() {
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
+		return tid;
 	}
 
 	public void setTime(int time) {
-				
-		throw new UnsupportedOperationException(TODO.method());
-		
+		tid = time;
 	}
 
 	public double getLatitude() {
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
-		
+		return lat;
 	}
 
 	public void setLatitude(double latitude) {
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
+		lat = latitude;
 	}
 
 	public double getLongitude() {
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
+		return longi;
 	}
 
 	public void setLongitude(double longitude) {
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
+		longi = longitude;
 	}
 
 	public double getElevation() {
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
+		return høgde;
 	}
 
 	public void setElevation(double elevation) {
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
+		høgde = elevation;
 	}
 	
 	public String toString() {
 		
-		String str;
+		String str = (tid +" (" + lat + "," + longi + ") " + høgde + "\n");
+		return str;
 		
-		throw new UnsupportedOperationException(TODO.method());
 
 		// TODO
 		
