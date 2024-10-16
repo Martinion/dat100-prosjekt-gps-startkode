@@ -55,7 +55,7 @@ public class ShowProfile extends EasyGraphics {
 			else if(y <= 0)
 				y = 0;
 			
-			drawLine(0, ybase, (int) punkt.getTime(), y);
+			drawLine(x, ybase, x + (int) punkt.getTime(), ybase + y);
 				
 		}
 		
