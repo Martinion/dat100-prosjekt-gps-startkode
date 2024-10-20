@@ -39,7 +39,7 @@ public class ShowProfile extends EasyGraphics {
 		makeWindow("Height profile", 2 * MARGIN + 3 * N, 2 * MARGIN + MAXBARHEIGHT);
 
 		// top margin + height of drawing area
-		showHeightProfile(MARGIN + MAXBARHEIGHT); 
+		showHeightProfile(MARGIN); 
 	}
 
 	public void showHeightProfile(int ybase) {
@@ -47,8 +47,17 @@ public class ShowProfile extends EasyGraphics {
 		int x = MARGIN; // første høyde skal tegnes ved MARGIN
 		int y;
 		
-		// TODO 
-		throw new UnsupportedOperationException(TODO.method());
+		for(GPSPoint punkt : gpspoints)
+		{
+			y = (int) punkt.getElevation();
+			if(y >=500)
+				y = 500;
+			else if(y <= 0)
+				y = 0;
+			
+			drawLine(x, ybase, x + (int) punkt.getTime(), ybase + y);
+				
+		}
 		
 
 	}
