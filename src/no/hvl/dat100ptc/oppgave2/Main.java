@@ -6,10 +6,14 @@ public class Main {
 
 	
 	public static void main(String[] args) {
-
-		String tid = "2017-08-13T08:52:26.000Z";
-		int sekund = GPSDataConverter.toSeconds(tid);
-		System.out.println(sekund);
+		GPSData gpsdata = new GPSData(2);
+		GPSPoint[] gpspoint = new GPSPoint[2];
+		GPSPoint gpspoint1 = new GPSPoint(1, 2.5, 3.6, 4.3);
+		GPSPoint gpspoint2 = new GPSPoint(2, 4.5, 6.9, 9.3);
 		
+		gpsdata.insertGPS(gpspoint1);
+		gpsdata.insertGPS(gpspoint2);
+		
+		gpsdata.print();
 	}
 }
