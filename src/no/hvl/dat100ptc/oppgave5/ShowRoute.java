@@ -6,6 +6,7 @@ import easygraphics.EasyGraphics;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 import no.hvl.dat100ptc.oppgave3.GPSUtils;
 import no.hvl.dat100ptc.oppgave4.GPSComputer;
+import java.util.concurrent.TimeUnit;
 
 import no.hvl.dat100ptc.TODO;
 
@@ -48,11 +49,11 @@ public class ShowRoute extends EasyGraphics {
 		xstep = scale(MAPXSIZE, minlon, maxlon);
 		ystep = scale(MAPYSIZE, minlat, maxlat);
 		
+		showStatistics();
+		
 		showRouteMap(MARGIN + MAPYSIZE);
 
 		replayRoute(MARGIN + MAPYSIZE);
-		
-		showStatistics();
 	}
 
 	public double scale(int maxsize, double minval, double maxval) {
@@ -64,8 +65,11 @@ public class ShowRoute extends EasyGraphics {
 
 	public void showRouteMap(int ybase) {
 
-		// TODO 
-		throw new UnsupportedOperationException(TODO.method());
+		setColor(0,0,255);
+		for(GPSPoint coord : gpspoints)
+		{
+			fillCircle(MARGIN + (int) (xstep * (coord.getLongitude()-minlon)), ybase - (int) (ystep * (coord.getLatitude()-minlat)), 4);
+		}
 		
 	}
 
@@ -76,15 +80,26 @@ public class ShowRoute extends EasyGraphics {
 		setColor(0,0,0);
 		setFont("Courier",12);
 		
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
+		int time = gpscomputer.totalTime();
+		
+		drawString(String.format("Total Time:             %02d:%02d:%02d", time / 3600, (time%3600)/60, time%60) , MARGIN, TEXTDISTANCE);
+		drawString(String.format("Total Distance:      %.2f km",  gpscomputer.totalDistance()/1000), MARGIN, TEXTDISTANCE*2);
+		drawString(String.format("Total Elevation:      %.2f m",  gpscomputer.totalElevation()), MARGIN, TEXTDISTANCE*3);
+		drawString(String.format("Max Speed:             %.2f km/t",  gpscomputer.maxSpeed()*3.6), MARGIN, TEXTDISTANCE*4);
+		drawString(String.format("Average Speed:     %.2f km/t",  gpscomputer.averageSpeed()*3.6), MARGIN, TEXTDISTANCE*5);
+		drawString(String.format("Calories burned:   %.2f kcal",  gpscomputer.totalKcal(135)), MARGIN, TEXTDISTANCE*6);
 		
 	}
 
 	public void replayRoute(int ybase) {
-
-		// TODO 
-		throw new UnsupportedOperationException(TODO.method());
+		
+		int id = fillCircle(MARGIN + (int) (xstep * (gpspoints[0].getLongitude()-minlon)), ybase - (int) (ystep * (gpspoints[0].getLatitude()-minlat)), 6);
+		setColor(0,0,255);
+		setSpeed(2);
+		for(GPSPoint coord : gpspoints)
+		{
+			moveCircle(id, MARGIN + (int) (xstep * (coord.getLongitude()-minlon)), ybase - (int) (ystep * (coord.getLatitude()-minlat)));
+		}
 		
 	}
 

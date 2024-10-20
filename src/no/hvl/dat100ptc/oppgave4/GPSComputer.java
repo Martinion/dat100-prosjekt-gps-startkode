@@ -72,7 +72,7 @@ public class GPSComputer {
 		public double averageSpeed() {
 		    double totalDistance = totalDistance(); 
 		    int totalTime = totalTime(); 
-		    return (totalDistance / totalTime) * 3.6;
+		    return (totalDistance / totalTime);
 		}
 
 	// conversion factor m/s to miles per hour (mps)

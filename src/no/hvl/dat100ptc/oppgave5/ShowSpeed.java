@@ -12,8 +12,9 @@ import no.hvl.dat100ptc.TODO;
 
 public class ShowSpeed extends EasyGraphics {
 			
-	private static int MARGIN = 50;
-	private static int BARHEIGHT = 100; 
+	private static final int MARGIN = 50;
+	private static final int BARHEIGHT = 200; 
+	private static final int BARWIDTH = 6;
 
 	private GPSComputer gpscomputer;
 	
@@ -31,8 +32,7 @@ public class ShowSpeed extends EasyGraphics {
 	public void run() {
 
 		makeWindow("Speed profile", 
-				2 * MARGIN + 
-				2 * gpscomputer.speeds().length, 2 * MARGIN + BARHEIGHT);
+				2 * MARGIN + (BARWIDTH + 1) * gpscomputer.speeds().length, 2 * MARGIN + BARHEIGHT);
 		
 		showSpeedProfile(MARGIN + BARHEIGHT);
 	}
@@ -42,12 +42,19 @@ public class ShowSpeed extends EasyGraphics {
 		int x = MARGIN;
 		int count = 0;
 	
+		setColor(25, 39, 148);
 		for(double speed : gpscomputer.speeds())
 		{
-			drawLine(x, ybase, x + count++, ybase + (int) speed);
+			speed *= 8;
+			fillRectangle(x, ybase - (int) speed, BARWIDTH, (int) speed);
+			x += BARWIDTH + 1;
 		}
 		
-		drawLine()
+		
+		int averageSpeed = (int) gpscomputer.averageSpeed() * 8;
+		
+		setColor(0, 189, 19);
+		drawLine(MARGIN, ybase - averageSpeed, MARGIN + (BARWIDTH + 1) * gpscomputer.speeds().length, ybase - averageSpeed);
 		
 	}
 }
