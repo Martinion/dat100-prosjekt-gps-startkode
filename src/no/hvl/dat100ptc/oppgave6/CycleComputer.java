@@ -105,4 +105,37 @@ public class CycleComputer extends EasyGraphics {
 		throw new UnsupportedOperationException(TODO.method());
 		
 	}
+	
+	public double[] climbs()
+	{
+		double[] tempClimbs = new double[gpspoints.length];
+		int k = 0;
+		for(int i = 0; i < gpspoints.length - 1; i++)
+		{
+			if(gpspoints[i].getElevation() < gpspoints[i+1].getElevation())
+				tempClimbs[k] += gpspoints[i+1].getElevation() - gpspoints[i].getElevation();
+			else
+				k++;
+		}
+		
+		k = 0;
+		for(double climb : tempClimbs)
+		{
+			if(climb != 0)
+				k++;
+		}
+		
+		double[] climbs = new double[k];
+		
+		k = 0;
+		for(int i = 0; i < climbs.length; i++)
+		{
+			while(tempClimbs[k] == 0)
+				k++;
+			climbs[i] = tempClimbs[k];
+			k++;
+		}
+		
+		return climbs;
+	}
 }
